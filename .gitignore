@@ -1,0 +1,6 @@
+*.sqlite3
+*.pyc
+*.sublime-project
+*.sublime-workspace
+*.todo
+functional_tests/screendumps
