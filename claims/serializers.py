@@ -11,33 +11,23 @@ class ClaimSerializer(serializers.HyperlinkedModelSerializer):
                   'questionnaire', 'offer', 'status')
 
 
-# class PartnerSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Partner
-#         fields = ('user',)
-
-
 class QuestionnaireSerializer(serializers.HyperlinkedModelSerializer):
-    # partners = serializers.HyperlinkedIdentityField(view_name='partner-list')
-    # partners = serializers.StringRelatedField(many=True)
-    # partners = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-    # partners = PartnerSerializer(many=True, read_only=True)
-    # partner_name = serializers.RelatedField(source='partner', read_only=True)
-    partner_name = serializers.ReadOnlyField(source='partner')
+    partner = serializers.SlugRelatedField(queryset=Partner.objects.all(),
+                                           slug_field='username')
 
     class Meta:
         model = Questionnaire
         fields = ('creation_date', 'changing_date', 'client_name', 'birthday',
-                  'phone_number', 'passport', 'scoring_points',  #'partner',
-                  'partner_name')
+                  'phone_number', 'passport', 'scoring_points', 'partner',)
 
 
 class OfferSerializer(serializers.HyperlinkedModelSerializer):
+    credit_organization = serializers.SlugRelatedField(
+        queryset=CreditOrganization.objects.all(), slug_field='username')
 
     class Meta:
         model = Offer
         fields = ('creation_date', 'changing_date', 'rotation_beginning_date',
                   'rotation_ending_date', 'title', 'offer_type',
                   'min_scoring_points', 'max_scoring_points',
-                  'credit_organization')
+                  'credit_organization',)

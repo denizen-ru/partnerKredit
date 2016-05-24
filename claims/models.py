@@ -25,7 +25,7 @@ class Offer(models.Model):
     min_scoring_points = models.IntegerField()
     max_scoring_points = models.IntegerField()
     credit_organization = models.ForeignKey(CreditOrganization,
-                                            related_name='offer')
+                                            related_name='offers')
 
     class Meta:
         verbose_name = "Offer"
@@ -62,9 +62,9 @@ class Claim(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True,
                                          verbose_name='Creation date/time')
     sending_date = models.DateTimeField(verbose_name='Sending date/time')
-    questionnaire = models.ForeignKey(Questionnaire, related_name='claim',
+    questionnaire = models.ForeignKey(Questionnaire, related_name='claims',
                                       on_delete=models.CASCADE)
-    offer = models.ForeignKey(Offer, related_name='claim',
+    offer = models.ForeignKey(Offer, related_name='claims',
                               on_delete=models.CASCADE)
     status = models.CharField(max_length=4, choices=CLAIM_STATUS_CHOICES)
 
