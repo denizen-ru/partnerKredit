@@ -8,6 +8,17 @@ class OfferPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         user = request.user
 
+        import sys
+        print(user, file=sys.stderr)
+        # print(user.Meta, file=sys.stderr)
+        # print(user.Meta.verbose_name, file=sys.stderr)
+        # print(user.Meta.verbose_name_plural, file=sys.stderr)
+        # print(dir(user.Meta), file=sys.stderr)
+        # print(vars(user.Meta).items(), file=sys.stderr)
+        print(dir(user), file=sys.stderr)
+        print(type(user), file=sys.stderr)
+        print(vars(user).items(), file=sys.stderr)
+
         # Credit Organization not allowed to create or edit anything
         # if (user.user_type is CREDIT_ORGANIZATION and
         #         request.method not in permissions.SAFE_METHODS):

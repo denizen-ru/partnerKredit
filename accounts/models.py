@@ -12,6 +12,7 @@ class CustomUser(AbstractUser):
 
 
 class SuperUser(CustomUser):
+    superuser_title = models.CharField(max_length=255, verbose_name="Title")
 
     class Meta:
         verbose_name = "Super User"
@@ -19,6 +20,7 @@ class SuperUser(CustomUser):
 
 
 class Partner(CustomUser):
+    partner_title = models.CharField(max_length=255, verbose_name="Title")
 
     class Meta:
         verbose_name = "Partner"
@@ -26,6 +28,7 @@ class Partner(CustomUser):
 
 
 class CreditOrganization(CustomUser):
+    creditorganization_title = models.CharField(max_length=255, verbose_name="Title")
 
     class Meta:
         verbose_name = "Credit Organization"
